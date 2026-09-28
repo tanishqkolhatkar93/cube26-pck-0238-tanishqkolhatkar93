@@ -2,7 +2,8 @@
 
 **🚀 Live Deployment:** [https://tanishqkolhatkar93-package-manager.streamlit.app/](https://tanishqkolhatkar93-package-manager.streamlit.app/)
 
-**Author:** Tanishq Kolhatkar ([@tanishqkolhatkar93](https://github.com/tanishqkolhatkar93))
+**Author:** Tanishq Kolhatkar 
+Mail Id  - tanishqkolhatkar93@gmail.com   | [Linkedln](https://www.linkedin.com/in/tanishq93/)
 
 An AI-powered quality control agent that inspects open shipping boxes before sealing, prevents costly fulfillment errors, and leaves a cryptographic audit trail for 3PLs and self-fulfilling sellers.
 
