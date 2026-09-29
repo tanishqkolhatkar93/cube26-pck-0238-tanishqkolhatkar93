@@ -17,26 +17,27 @@ Once human baselines were established, the images and corresponding Expected Ord
 
 ## Overall Metrics
 | Metric | Value |
-|---|---|
-| Total Test Units | 50 |
-|False Positives (Marked SEAL, but issue existed) | 0 |
-|False Negatives (Marked STOP, but order was fine) | 3 |
-|UNCERTAIN Rate | 4 units (8%) |
-| ll_items_present Accuracy | 98% |
-| quantities_correct Accuracy | 85% (gap due to occlusion) |
-| Average Latency | 2.4 seconds |
+| :--- | :--- |
+| **Total Test Units** | 50 |
+| **False Positives** (Marked SEAL, but issue existed) | 0 |
+| **False Negatives** (Marked STOP, but order was fine) | 3 |
+| **UNCERTAIN Rate** | 4 units (8%) |
+| **`all_items_present` Accuracy** | 98% |
+| **`quantities_correct` Accuracy** | 85% (gap due to occlusion) |
+| **Average Latency** | 2.4 seconds |
 
-**Note on False Positives:** A 0% False Positive rate is critical for a warehouse Ai. It is better to flag a good box for human review (False Negative) than to seal a box that is missing an item (False Positive).
+> **Note on False Positives:** A 0% False Positive rate is critical for a warehouse AI. It is better to flag a good box for human review (False Negative) than to seal a box that is missing an item (False Positive).
 
 ## Evaluation Sample Table
 | Unit ID | Human Label | Agent Result | Agreement | Uncertainty / Failure Mode |
-|Req-001 | SEAL | SEAL | Yes | - |
-|Req-002 | STOP (missing) | STOP (missing) | Yes | - |
-|Req-003 | SEAL | STOP | Nm (FN) | Agent miscounted overlapping black t-shirts as 1 instead of 2. |
-|Req-004 | UNCERTAIN | UNCERTAIN | Yes | Photo out of focus. Agent correctly refused to guess. |
-|Req-005 | STOP (extra) | STOP (extra) | Yes | - |
+| :--- | :--- | :--- | :--- | :--- |
+| `Req-001` | SEAL | SEAL | ✅ Yes | - |
+| `Req-002` | STOP (missing) | STOP (missing) | ✅ Yes | - |
+| `Req-003` | SEAL | STOP | ❌ No (FN) | Agent miscounted overlapping black t-shirts as 1 instead of 2. |
+| `Req-004` | UNCERTAIN | UNCERTAIN | ✅ Yes | Photo out of focus. Agent correctly refused to guess. |
+| `Req-005` | STOP (extra) | STOP (extra) | ✅ Yes | - |
 
-## Failure Modes &amp; Limitations
-11. **Occluded Identical Items:** The model struggles with quantity counting when identical soft-goods (like tshirts) are folded on top of each other. It tends to undercout.
+## Failure Modes & Limitations
+1. **Occluded Identical Items:** The model struggles with quantity counting when identical soft-goods (like t-shirts) are folded on top of each other. It tends to undercount.
 2. **Barcode OCR:** While visual product matching is strong, the OEM model sometimes hallucinates digits if a barcode is only partially visible.
 3. **Similar Packaging:** If two products share the exact same box design but different sizes, and there is no reference scale in the photo, the agent cannot distinguish them. This is a known limitation.
