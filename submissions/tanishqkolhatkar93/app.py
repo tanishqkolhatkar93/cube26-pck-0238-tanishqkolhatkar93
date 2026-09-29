@@ -24,7 +24,7 @@ API_URL = os.getenv("API_URL", "http://localhost:8000")
 # --- Custom CSS for Aesthetics ---
 st.markdown("""
     <style>
-    .main-header { font-size: 96px; font-weight: 900; background: -webkit-linear-gradient(45deg, #1E3A8A, #3B82F6, #93C5FD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0px; text-align: center; padding-top: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); line-height: 1.2; }
+    .main-header { font-size: 56px; font-weight: 900; background: -webkit-linear-gradient(45deg, #1E3A8A, #3B82F6, #93C5FD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0px; text-align: center; padding-top: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); line-height: 1.2; }
     .sub-header { font-size: 24px; color: #6B7280; margin-top: 5px; margin-bottom: 40px; text-align: center; font-weight: 600; letter-spacing: 1px; }
     .section-title { font-size: 28px; font-weight: 800; color: #1E3A8A; margin-bottom: 20px; border-bottom: 3px solid #E5E7EB; padding-bottom: 10px; }
     .stButton>button { border-radius: 12px; height: 60px; font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s; box-shadow: 0 4px 6px -1px rgba(37,99,235,0.4); }
