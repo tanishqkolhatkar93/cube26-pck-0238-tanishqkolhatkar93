@@ -16,13 +16,22 @@
 We designed the system to be strictly decoupled. The operator tablet (Frontend) never talks to the AI directly. It must pass through the FastAPI backend which enforces security and business rules.
 
 ```mermaid
-graph TD
-    A[Operator Tablet / Streamlit] -->|Multipart Image & Expected SKUs| B[FastAPI Backend Server]
-    B -->|Row-Level Security Check| B
-    B -->|1. Image Bytes & Prompt| C[Gemini Vision Engine]
-    C -->|2. Structured JSON Passed/Failed| B
-    B -->|3. Generate SHA256 Hash| D[(Contract JSON Store)]
-    B -->|4. Return Verdict| A
+sequenceDiagram
+    autonumber
+    actor Operator
+    participant UI as Streamlit Dashboard
+    participant API as FastAPI Backend
+    participant AI as Gemini Vision AI
+    participant DB as JSON Evidence Store
+
+    Operator->>UI: Uploads Box Photo & Order ID
+    UI->>API: Sends Image & Expected Items
+    API->>API: Validates Tenant Security (x-org-id)
+    API->>AI: Prompts Model with Image & Schema
+    AI-->>API: Returns Structured JSON (SEAL / STOP)
+    API->>DB: Saves Cryptographic Audit Log (SHA-256)
+    API-->>UI: Returns Final Decision
+    UI-->>Operator: Displays Red/Green Verdict Banner
 ```
 
 ## ⚙️ Engineering Design Decisions
