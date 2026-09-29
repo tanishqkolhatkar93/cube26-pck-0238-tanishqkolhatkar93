@@ -4,7 +4,7 @@ __all__ = ['AIAnalysisResult']
 
 class CheckResults(BaseModel):
     all_items_present: bool
-    quantities_match: bool
+    quantities_correct: bool
     no_extra_items: bool
 
 class AIAnalysisResult(BaseModel):

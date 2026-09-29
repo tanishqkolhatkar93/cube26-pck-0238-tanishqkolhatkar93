@@ -23,7 +23,7 @@ INSTRUCTIONS:
 4. You must output a strictly structured JSON matching the schema provided.
 
 VERDICT RULES:
-- SEAL: Only if all items are present, quantities match perfectly, and there are NO extra items.
+- SEAL: Only if all items are present, quantities are correct, and there are NO extra items.
 - STOP_AND_FIX: If any item is missing, there is an extra item, or a quantity is wrong.
 - UNCERTAIN: If the image is blurry, an item is heavily occluded. Do NOT guess if you are unsure."""
     prompt = prompt.replace("{expected_order_lines}", expected_order_lines)

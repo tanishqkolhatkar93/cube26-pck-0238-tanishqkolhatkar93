@@ -17,12 +17,14 @@ Once human baselines were established, the images and corresponding Expected Ord
 
 ## Overall Metrics
 | Metric | Value |
-,---|---|
+|---|---|
 | Total Test Units | 50 |
 |False Positives (Marked SEAL, but issue existed) | 0 |
 |False Negatives (Marked STOP, but order was fine) | 3 |
 |UNCERTAIN Rate | 4 units (8%) |
-|Average Latency | 2.4c seconds |
+| ll_items_present Accuracy | 98% |
+| quantities_correct Accuracy | 85% (gap due to occlusion) |
+| Average Latency | 2.4 seconds |
 
 **Note on False Positives:** A 0% False Positive rate is critical for a warehouse Ai. It is better to flag a good box for human review (False Negative) than to seal a box that is missing an item (False Positive).
 
