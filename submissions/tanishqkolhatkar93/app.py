@@ -24,8 +24,11 @@ API_URL = os.getenv("API_URL", "http://localhost:8000")
 # --- Custom CSS for Aesthetics ---
 st.markdown("""
     <style>
-    .main-header { font-size: 42px; font-weight: 800; color: #1E3A8A; margin-bottom: 0px; }
-    .sub-header { font-size: 18px; color: #6B7280; margin-top: -10px; margin-bottom: 30px; }
+    .main-header { font-size: 72px; font-weight: 900; background: -webkit-linear-gradient(45deg, #1E3A8A, #3B82F6, #93C5FD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0px; text-align: center; padding-top: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); line-height: 1.2; }
+    .sub-header { font-size: 24px; color: #6B7280; margin-top: 5px; margin-bottom: 40px; text-align: center; font-weight: 600; letter-spacing: 1px; }
+    .section-title { font-size: 28px; font-weight: 800; color: #1E3A8A; margin-bottom: 20px; border-bottom: 3px solid #E5E7EB; padding-bottom: 10px; }
+    .stButton>button { border-radius: 12px; height: 60px; font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s; box-shadow: 0 4px 6px -1px rgba(37,99,235,0.4); }
+    .stButton>button:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(37,99,235,0.6); }
     .seal-banner { background-color: #ecfdf5; border-left: 8px solid #10b981; color: #065f46; padding: 25px; border-radius: 8px; font-size: 28px; font-weight: bold; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
     .stop-banner { background-color: #fef2f2; border-left: 8px solid #ef4444; color: #991b1b; padding: 25px; border-radius: 8px; font-size: 28px; font-weight: bold; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
     .uncertain-banner { background-color: #fffbeb; border-left: 8px solid #f59e0b; color: #92400e; padding: 25px; border-radius: 8px; font-size: 28px; font-weight: bold; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
@@ -61,7 +64,7 @@ st.markdown('<p class="sub-header">Autonomous Outbound Packaging Verification Ag
 col_manifest, col_upload = st.columns([1, 1], gap="large")
 
 with col_manifest:
-    st.markdown("### 📋 1. Order Manifest")
+    st.markdown('<div class="section-title">📋 1. Order Manifest</div>', unsafe_allow_html=True)
     with st.container(border=True):
         sub_col1, sub_col2 = st.columns(2)
         with sub_col1:
@@ -71,12 +74,15 @@ with col_manifest:
         expected_lines = st.text_area("Expected Order Lines (SKU:qty)", value="KEYBOARD:1; MOUSE:1", height=150)
 
 with col_upload:
-    st.markdown("### 📸 2. Visual Inspection")
-    uploaded_file = st.file_uploader("Upload open box overhead photo", type=["jpg", "jpeg", "png"], help="Ensure good lighting and top-down angle.")
-    verify_clicked = False
-    if uploaded_file:
-        st.image(uploaded_file, caption="Captured Image Preview", use_container_width=True)
-        verify_clicked = st.button("🚀 VERIFY PACKAGE", type="primary")
+    st.markdown('<div class="section-title">📸 2. Visual Inspection</div>', unsafe_allow_html=True)
+    with st.container(border=True):
+        uploaded_file = st.file_uploader("Upload open box overhead photo", type=["jpg", "jpeg", "png"], help="Ensure good lighting and top-down angle.")
+        verify_clicked = False
+        if uploaded_file:
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.image(uploaded_file, caption="Captured Image Preview", use_container_width=True)
+            st.markdown("<br>", unsafe_allow_html=True)
+            verify_clicked = st.button("🚀 VERIFY PACKAGE", type="primary", use_container_width=True)
 
 st.divider()
 
