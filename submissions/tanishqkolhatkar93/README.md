@@ -2,7 +2,9 @@
 
 **🚀 Live Deployment:** [https://tanishqkolhatkar93-package-manager.streamlit.app/](https://tanishqkolhatkar93-package-manager.streamlit.app/)
 
-**Author:** Tanishq Kolhatkar ([@tanishqkolhatkar93](https://github.com/tanishqkolhatkar93))
+**Author:** Tanishq Kolhatkar 
+
+**Mail Id**  - tanishqkolhatkar93@gmail.com   | [Linkedln](https://www.linkedin.com/in/tanishq93/)
 
 An AI-powered quality control agent that inspects open shipping boxes before sealing, prevents costly fulfillment errors, and leaves a cryptographic audit trail for 3PLs and self-fulfilling sellers.
 
@@ -35,3 +37,50 @@ submissions/tanishqkolhatkar93/
 
 ## Kill condition
 If the False Positive Rate (where the AI tells the operator to SEAL a box that is actually missing items or contains wrong items) exceeds 1.0% in warehouse staging.
+
+---
+
+## 💡 The Solution
+
+In high-volume fulfillment operations, packing mistakes lead to returns, expensive reshipments, and retailer chargebacks.
+**Pack Manager AI** acts as a sub-second visual gatekeeper at the packing table:
+1. Overhead cameras snap an image of the open shipping carton.
+2. The agent compares visual contents against the expected order lines.
+3. It issues a deterministic operational verdict (**SEAL**, **STOP & FIX**, **UNCERTAIN**, or **PENDING**).
+4. Every decision is cryptographically hashed and saved in the `contract/` folder for non-repudiation.
+
+## ⚡ Setup & Execution
+
+### Running via Streamlit Community Cloud
+The application is designed with a dual-mode architecture and is actively deployed. You do not need to run it locally to evaluate it.
+1. Visit the live URL at the top of this README.
+2. Open the **⚙️ Settings > 🔑 API Key Config** sidebar.
+3. Paste your Gemini API key and click **Validate Key**.
+4. Upload an image and verify!
+
+### Running Locally
+```powershell
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Add API key to environment
+# Edit agent/.env to include GEMINI_API_KEY="your_key"
+
+# 3. Start Backend (Terminal 1)
+cd agent
+uvicorn main:app --reload --env-file .env --port 8000
+
+# 4. Start Frontend (Terminal 2)
+streamlit run app.py
+```
+
+## ⚠️ Assumptions & Limitations
+
+### Assumptions
+1. **Lighting and Angle:** We assume the packing station has adequate lighting and an overhead camera providing a clear, top-down perspective into the open carton.
+2. **Tenant Isolation:** All requests are isolated across distinct 3PL warehouse clients via the `x-org-id` header to guarantee Row-Level Security.
+
+### Limitations / Failure Modes
+1. **Vertical Textile Occlusion:** Identical folded soft goods (e.g. 3 stacked black shirts) cannot be counted accurately if the bottom layers are fully hidden.
+2. **Identical Packaging in Varied Sizes:** Products sharing exact identical box designs without readable text require manual barcode scan pairing.
+3. **Opaque Sub-Packaging:** Items inside sealed opaque polybags (like screws or cables) cannot be inspected internally by the vision model.
