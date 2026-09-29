@@ -49,7 +49,7 @@ o_extra_items) over unstructured natural language responses.
 
 ## 📅 Phase 5: Evaluation Methodology & Dual-Mode Deployment
 - **Actions Taken:**
-  - Executed a 50-unit held-out evaluation across 4 test categories (Perfect, Missing, Wrong SKU, Ambiguous/Occluded).
+  - Executed a 50-unit held-out evaluation across 4 test categories (Perfect, Missing, Wrong SKU, Ambiguous).
   - Calculated two-human labeler agreement (Cohen's $\kappa = 0.89$), measuring a **0.0% False Positive Rate** and an **8.0% UNCERTAIN rate** on blurry/occluded units.
   - Upgraded app.py with dual-mode runtime logic: connects to FastAPI via REST when run locally, and seamlessly falls back to direct in-process inference when deployed to Streamlit Cloud.
 

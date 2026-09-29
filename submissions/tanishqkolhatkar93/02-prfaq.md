@@ -6,7 +6,7 @@
 **Q: Can a 3PL worker see the packages of a different client brand?**
 *A:** No. We utilize strict Row-Level Security (RLS) via Tenant Isolation. Every API request is tagged with an `org_id`, and operators can only write and read evidence contracts belonging to their authenticated organization.
 
-ŠªQ: What if the AI can't see the items clearly because they are stacked or blurry?**
+Å ÂªQ: What if the AI can't see the items clearly because they are stacked or blurry?**
 *A:** The AI is strictly prompted never to guess. If the visual evidence is ambiguous, it will output a unique "UNCERTAIN" verdict, requiring human review. It is not treated as a low-confidence PASS.
 
 **Q: How do we handle customer disputes ("I only got 1 shirt, not 2!")?**

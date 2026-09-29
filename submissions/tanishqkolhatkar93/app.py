@@ -52,19 +52,6 @@ with st.sidebar:
         custom_api_key = st.text_input("Gemini API Key", value=default_key, type="password")
         if custom_api_key:
             os.environ["GEMINI_API_KEY"] = custom_api_key
-            
-        if st.button("Validate Key", use_container_width=True):
-            if custom_api_key:
-                try:
-                    import google.genai as genai
-                    client = genai.Client(api_key=custom_api_key)
-                    # Simple call to verify auth
-                    list(client.models.list())
-                    st.success("✅ API Key is valid and active!")
-                except Exception as e:
-                    st.error(f"❌ Invalid Key: {str(e)}")
-            else:
-                st.warning("Please enter a key first.")
 
 # --- Main App Header ---
 st.markdown('<p class="main-header">📦 Pack Manager AI</p>', unsafe_allow_html=True)
