@@ -24,27 +24,48 @@ API_URL = os.getenv("API_URL", "http://localhost:8000")
 # --- Custom CSS for Aesthetics ---
 st.markdown("""
     <style>
-    .main-header { font-size: 56px; font-weight: 900; background: -webkit-linear-gradient(45deg, #1E3A8A, #3B82F6, #93C5FD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0px; text-align: center; padding-top: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); line-height: 1.2; }
-    .sub-header { font-size: 24px; color: #6B7280; margin-top: 5px; margin-bottom: 40px; text-align: center; font-weight: 600; letter-spacing: 1px; }
-    .section-title { font-size: 28px; font-weight: 800; color: #1E3A8A; margin-bottom: 20px; border-bottom: 3px solid #E5E7EB; padding-bottom: 10px; }
-    .stButton>button { border-radius: 12px; height: 60px; font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s; box-shadow: 0 4px 6px -1px rgba(37,99,235,0.4); }
-    .stButton>button:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(37,99,235,0.6); }
-    .seal-banner { background-color: #ecfdf5; border-left: 8px solid #10b981; color: #065f46; padding: 25px; border-radius: 8px; font-size: 28px; font-weight: bold; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-    .stop-banner { background-color: #fef2f2; border-left: 8px solid #ef4444; color: #991b1b; padding: 25px; border-radius: 8px; font-size: 28px; font-weight: bold; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-    .uncertain-banner { background-color: #fffbeb; border-left: 8px solid #f59e0b; color: #92400e; padding: 25px; border-radius: 8px; font-size: 28px; font-weight: bold; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-    .pending-banner { background-color: #f3f4f6; border-left: 8px solid #6b7280; color: #1f2937; padding: 25px; border-radius: 8px; font-size: 28px; font-weight: bold; display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-    .stButton>button { width: 100%; border-radius: 8px; height: 50px; font-size: 18px; font-weight: bold; }
-    .metric-card { background-color: #f9fafb; padding: 15px; border-radius: 8px; border: 1px solid #e5e7eb; }
+    /* Global Font Settings */
+    h1 {
+        font-size: 3rem !important;
+        font-weight: 800 !important;
+        color: #1E293B !important;
+        padding-bottom: 0px !important;
+        margin-bottom: 0px !important;
+    }
+    h3 {
+        font-size: 1.5rem !important;
+        font-weight: 600 !important;
+        color: #475569 !important;
+        margin-top: -5px !important;
+    }
+    .stButton>button {
+        border-radius: 8px;
+        height: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #2563EB;
+        color: white;
+        transition: all 0.2s;
+        border: none;
+    }
+    .stButton>button:hover {
+        background-color: #1D4ED8;
+        box-shadow: 0 4px 6px -1px rgba(37,99,235,0.4);
+    }
+    .seal-banner { background-color: #F0FDF4; border-left: 6px solid #22C55E; color: #166534; padding: 20px; border-radius: 6px; font-size: 24px; font-weight: bold; }
+    .stop-banner { background-color: #FEF2F2; border-left: 6px solid #EF4444; color: #991B1B; padding: 20px; border-radius: 6px; font-size: 24px; font-weight: bold; }
+    .pending-banner { background-color: #F8FAFC; border-left: 6px solid #64748B; color: #334155; padding: 20px; border-radius: 6px; font-size: 24px; font-weight: bold; }
+    .metric-card { background-color: #FFFFFF; padding: 15px; border-radius: 8px; border: 1px solid #E2E8F0; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1); }
     </style>
 """, unsafe_allow_html=True)
 
 # --- Sidebar / Advanced Config ---
 with st.sidebar:
     st.image("https://cdn-icons-png.flaticon.com/512/3055/3055627.png", width=60)
-    st.title("Settings")
+    st.title("⚙️ Settings")
     st.markdown("Configure packing station context.")
     
-    with st.expander("⚙️ Station Config", expanded=True):
+    with st.expander("📋 Station Config", expanded=True):
         operator_id = st.text_input("Operator ID", value="OP-992")
         org_id = st.selectbox("Tenant (org_id)", ["org_demo_alpha", "org_demo_bravo"])
     
@@ -57,14 +78,14 @@ with st.sidebar:
             os.environ["GEMINI_API_KEY"] = custom_api_key
 
 # --- Main App Header ---
-st.markdown('<p class="main-header">📦 Pack Manager AI</p>', unsafe_allow_html=True)
-st.markdown('<p class="sub-header">Autonomous Outbound Packaging Verification Agent</p>', unsafe_allow_html=True)
+st.markdown("# 📦 Pack Manager AI")
+st.markdown("### Autonomous Outbound Packaging Verification Agent")
 
 # --- Layout ---
 col_manifest, col_upload = st.columns([1, 1], gap="large")
 
 with col_manifest:
-    st.markdown('<div class="section-title">📋 1. Order Manifest</div>', unsafe_allow_html=True)
+    st.markdown("### 📋 1. Order Manifest")
     with st.container(border=True):
         sub_col1, sub_col2 = st.columns(2)
         with sub_col1:
@@ -74,7 +95,7 @@ with col_manifest:
         expected_lines = st.text_area("Expected Order Lines (SKU:qty)", value="KEYBOARD:1; MOUSE:1", height=150)
 
 with col_upload:
-    st.markdown('<div class="section-title">📸 2. Visual Inspection</div>', unsafe_allow_html=True)
+    st.markdown("### 📸 2. Visual Inspection")
     with st.container(border=True):
         uploaded_file = st.file_uploader("Upload open box overhead photo", type=["jpg", "jpeg", "png"], help="Ensure good lighting and top-down angle.")
         verify_clicked = False
@@ -189,7 +210,7 @@ if uploaded_file and verify_clicked:
                 st.markdown('<div class="stop-banner">❌ STOP & FIX</div>', unsafe_allow_html=True)
                 st.error(f"**Reasoning:** {result_reasoning}")
             elif result_verdict == "UNCERTAIN":
-                st.markdown('<div class="uncertain-banner">⚠️ UNCERTAIN (Human Review Required)</div>', unsafe_allow_html=True)
+                st.markdown('<div class="stop-banner">❌ STOP & FIX</div>', unsafe_allow_html=True)
                 st.warning(f"**Reasoning:** {result_reasoning}")
             else:
                 st.markdown('<div class="pending-banner">⏳ PENDING (Fail Open)</div>', unsafe_allow_html=True)
