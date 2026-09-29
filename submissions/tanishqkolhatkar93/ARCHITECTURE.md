@@ -38,3 +38,9 @@ This is built for Third Party Logistics (3PL) companies who pack boxes for MULTI
 ### 3. Cryptographic Evidence Contracts
 Customers often lie about "missing items" for refunds. The system doesn't just make a decision; it generates a legally traceable receipt. 
 * **How we built it:** For every image processed, The FastAPI backend generates a SHA256 hash of the JPEG bytes. It saves a strict JSON record (containing the operator ID, what was expected, what was found, and the hash) to a fixed `contract/` folder.
+### 4. Decision Logic & Verdict Generation
+The system employs a strict deterministic rules engine on top of the Vision AI's output. The VLM must output three booleans (ll_items_present, quantities_correct, 
+o_extra_items). 
+* **SEAL:** Triggered *only* if all three booleans evaluate to True.
+* **STOP & FIX:** Triggered if *any* boolean evaluates to False.
+* **UNCERTAIN:** Triggered safely if the VLM cannot confidently see the items. This safely routes the box to a human reviewer.

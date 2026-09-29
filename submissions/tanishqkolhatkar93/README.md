@@ -58,6 +58,13 @@ The application is designed with a dual-mode architecture and is actively deploy
 3. Paste your Gemini API key and click **Validate Key**.
 4. Upload an image and verify!
 
+### Test Inputs (Sample Data)
+To evaluate the agent, try the following test scenario in the UI:
+1. **Unit ID:** UNIT-TEST-01
+2. **Order ID:** ORD-9999
+3. **Expected Order Lines:** KEYBOARD: 1; MOUSE: 1; USB_CABLE: 1
+4. **Image Upload:** Upload a clear overhead photo matching (or intentionally violating) these items to see the SEAL or STOP & FIX logic trigger.
+
 ### Running Locally
 ```powershell
 # 1. Install dependencies
