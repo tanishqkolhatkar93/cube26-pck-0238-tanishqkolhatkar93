@@ -28,14 +28,14 @@ st.markdown("""
     h1 {
         font-size: 3rem !important;
         font-weight: 800 !important;
-        color: #1E293B !important;
+        color: #000000 !important;
         padding-bottom: 0px !important;
         margin-bottom: 0px !important;
     }
     h3 {
         font-size: 1.5rem !important;
         font-weight: 600 !important;
-        color: #475569 !important;
+        color: #111827 !important;
         margin-top: -5px !important;
     }
     .stButton>button {
