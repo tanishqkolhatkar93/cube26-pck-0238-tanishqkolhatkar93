@@ -40,6 +40,9 @@ If the False Positive Rate (where the AI tells the operator to SEAL a box that i
 
 ---
 
+## 🧠 Problem Understanding
+An outbound order is picked and placed into a box. Before the box is sealed, someone needs to verify: **Does the box contain exactly what the customer ordered?** A wrong item or incorrect quantity can lead to refunds, returns, replacement shipments and poor customer experience.
+
 ## 💡 The Solution
 
 In high-volume fulfillment operations, packing mistakes lead to returns, expensive reshipments, and retailer chargebacks.
